@@ -1,0 +1,53 @@
+class Calculator {
+
+    constructor() {
+        this.history = [];
+    }
+
+    // Add two numbers
+    add(a, b) {
+        const result = a + b;
+        this.history.push({ operation: 'add', a, b, result });
+        return result;
+    }
+
+    // Subtract two numbers
+    subtract(a, b) {
+        const result = a - b;
+        this.history.push({ operation: 'subtract', a, b, result });
+        return result;
+    }
+
+    // Divide two numbers
+    divide(a, b) {
+        if (b === 0) {
+            console.error('Cannot divide by zero.');
+            return undefined;
+        }
+        const result = a / b;
+        this.history.push({ operation: 'divide', a, b, result });
+        return result;
+    }
+
+    // Multiply two numbers
+    multiply(a, b) {
+        const result = a * b;
+        this.history.push({ operation: 'multiply', a, b, result });
+        return result;
+    }
+
+    // Print the history of all operations
+    printHistory() {
+        this.history.forEach(entry => {
+            console.log(`${entry.operation}: ${entry.a} ${entry.operation === 'add' ? '+' : entry.operation === 'subtract' ? '-' : entry.operation === 'multiply' ? '*' : '/'} ${entry.b} = ${entry.result}`);
+        });
+    }
+}
+
+// Usage of the Calculator class
+const calc = new Calculator();
+calc.add(5, 3);
+calc.subtract(10, 5);
+calc.divide(10, 0);
+calc.multiply(3, 3);
+calc.printHistory();
